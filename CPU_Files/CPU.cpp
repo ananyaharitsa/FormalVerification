@@ -443,7 +443,8 @@ int32_t ImmGen(Instruction s) {
     else {
         return 0;
     }
-        
+    //Should not reach here
+    return 0;    
 }
 
 int32_t ALU_Result(int x1, int x2, bitset<4> ALUOp)

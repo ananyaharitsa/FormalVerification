@@ -1,0 +1,18 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run CPU Simulator",
+      "type": "cppdbg",
+      "request": "launch",
+      "program": "${workspaceFolder}/CPU_Files/cpusim.exe",
+      "args": ["Test/trace/24instMem-r.txt"],
+      "cwd": "${workspaceFolder}",
+      "preLaunchTask": "Build CPU Simulator",
+      "console": "integratedTerminal",
+      "MIMode": "gdb",
+      "miDebuggerPath": "gdb",
+      "stopAtEntry": false
+    }
+  ]
+}
