@@ -219,5 +219,6 @@ It provides a solid foundation for simulating and testing RISC-V instructions st
 ---
 
 RUN IT WITH 
-```g++ "CPU_Files/cpusim.cpp" "CPU_Files/CPU.cpp" -I"CPU_Files" -g -o "CPU_Files/cpusim.exe"
+```cpp
+g++ "CPU_Files/cpusim.cpp" "CPU_Files/CPU.cpp" -I"CPU_Files" -g -o "CPU_Files/cpusim.exe"
 ```
