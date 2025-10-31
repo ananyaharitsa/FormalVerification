@@ -6,11 +6,13 @@
       "type": "shell",
       "command": "g++",
       "args": [
+        "-std=c++17",
         "CPU_Files/cpusim.cpp",
+        "CPU_Files/CPU.cpp",
         "-I",
         "CPU_Files",
         "-o",
-        "CPU_Files/cpusim.exe"
+        "cpusim.exe"
       ],
       "options": {
         "cwd": "${workspaceFolder}"

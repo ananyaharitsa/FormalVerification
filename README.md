@@ -5,8 +5,23 @@
 This program implements a simplified **RISC-V CPU simulator** in C++.
 It models the core stages of instruction execution: **fetch, decode, execute, memory access, and write-back**.
 
-Each class corresponds to a specific component in a basic CPU datapath.
+# How to Run the CPU Simulator
 
+1. Open the `cpusim.cpp` file in your project folder.
+2. Build the program. In VS Code, you can do this by pressing `Ctrl+Shift+B` and selecting the appropriate build task. Make sure all dependent files (`CPU.cpp`, `CPU.h`, and any other headers or source files) are in the same folder or included in your build command.
+3. Once the build completes, open a terminal in the same directory where `cpusim.exe` was created.
+4. Execute the program by providing your instruction file as a command-line argument. For example:
+
+```powershell
+.\cpusim.exe CPU_Files\your_input_file.txt
+```
+
+Replace `your_input_file.txt` with the name of the instruction file you want to simulate.  
+
+When you run the program with this file as an argument, the CPU simulator will execute all instructions in the file and display the results in the terminal. The output includes the final contents of the registers, for example `(a0, a1)`, showing the state of the CPU at the end of execution.
+
+
+Each class corresponds to a specific component in a basic CPU datapath.
 ---
 
 ##  1. `CPU` Class

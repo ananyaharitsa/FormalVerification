@@ -5,7 +5,7 @@
       "name": "Run CPU Simulator",
       "type": "cppdbg",
       "request": "launch",
-      "program": "${workspaceFolder}/CPU_Files/cpusim.exe",
+      "program": "${workspaceFolder}/cpusim.exe",
       "args": ["Test/trace/24instMem-r.txt"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Build CPU Simulator",

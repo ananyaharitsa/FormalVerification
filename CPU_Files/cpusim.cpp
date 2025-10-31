@@ -98,6 +98,13 @@ int main(int argc, char* argv[])
 		if (i - myCPU.readPC() < 4)
 			break;
 
+		 // --- DEBUG: Print all register values after this instruction ---
+    	/*cout << "PC: " << myCPU.readPC() << " | Registers: ";
+    	for (int r = 0; r < NUM_REGISTERS; r++) {
+        	cout << "x" << r << "=" << registers[r] << " ";
+    	}
+    	cout << endl;*/
+		
 		/* Instantiate your Instruction object here. */
 		Instruction myInst(instMem, myCPU); 
 
