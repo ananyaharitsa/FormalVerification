@@ -217,3 +217,7 @@ This C++ program builds the **core logic** of a single-cycle RISC-V CPU simulato
 It provides a solid foundation for simulating and testing RISC-V instructions step-by-step.
 
 ---
+
+RUN IT WITH 
+```g++ "CPU_Files/cpusim.cpp" "CPU_Files/CPU.cpp" -I"CPU_Files" -g -o "CPU_Files/cpusim.exe"
+```
