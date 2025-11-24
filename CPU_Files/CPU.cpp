@@ -1,8 +1,8 @@
 #include "CPU.h"
 
-
-
+//////////////////////////////////////////////////////////////////////
 //CONSTRUCTORS
+//////////////////////////////////////////////////////////////////////
 
 CPU::CPU()
 {
@@ -13,17 +13,7 @@ CPU::CPU()
 	}
 }
 
-unsigned long CPU::readPC()
-{
-    return PC;
-}
-void CPU::incPC(unsigned long nextPC)
-{
-    //Increasing by 8 (Hexadecimal Bits (4 Bytes))
-    PC = nextPC;
-}
-
-//Insturction Fetch
+//Insturction Fetch (Done upon initialization of Instruction object)
 Instruction::Instruction(unsigned char instructionMem[], CPU cpu)
 {
     unsigned long currentPC = cpu.readPC();
@@ -33,27 +23,10 @@ Instruction::Instruction(unsigned char instructionMem[], CPU cpu)
     for (int i = currentPC; i < currentPC + 4; ++i) {
         unsigned char ch = instructionMem[i];
         uint32_t hexValue = static_cast<uint32_t>(ch);
-        /*
-        // Convert ASCII character to the corresponding hex value
-        if (ch >= '0' && ch <= '9') {
-            hexValue = ch - '0';
-        }
-        else if (ch >= 'A' && ch <= 'F') {
-            hexValue = ch - 'A' + 10;
-        }
-        else if (ch >= 'a' && ch <= 'f') {
-            hexValue = ch - 'a' + 10;
-        }
-        else {
-            std::cerr << "Invalid hexadecimal character: " << ch << std::endl;
-            return; // Exit if invalid character
-        }
-        */
+        
         // Shift combined left by 8 bits (1 BYTE) to make space, then add the new hex value 
         combined = (combined << 8) | hexValue;
     }
-
-
 
     // Update instr bitset<32> from the 32-bit integer
     instr = bitset<32>(toBigEndian(combined));
@@ -237,7 +210,44 @@ ALU_Controller::ALU_Controller(Instruction s, bitset<2> ALUOp_FrmController)
 // FUNCTIONS
 /////////////////////////////////////////////////////////////////////
 
+//For CPU class//////////////////////////////////////////////////////
+unsigned long CPU::readPC()
+{
+    return PC;
+}
+void CPU::incPC(unsigned long nextPC)
+{
+    //Increasing by 8 (Hexadecimal Bits (4 Bytes))
+    PC = nextPC;
+}
 
+int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
+{
+    if (MemWrite && word) {
+        dmemory[ALUResult / 4] = rs2;
+        return 0;
+    }
+    //IF the store is just a byte
+    else if (MemWrite && !(word) ) {
+        dmemory[ALUResult / 4] = rs2 & 0xFF;
+        return 0;
+    }
+    else if (MemRead && word) {
+        return dmemory[ALUResult / 4];
+    }
+    //IF the load is just a byte
+    else if (MemRead && !(word)) {
+        return (dmemory[ALUResult / 4] & 0xFF);
+    }
+    else
+        return -1;
+}
+//////////////////////////////////////////////////////////////////////
+
+
+
+
+//OTHER FUNCTIONS
 
 // LITTLE ENDIAN INSTRUCTION TO BIG ENDIAN
 uint32_t toBigEndian(uint32_t value) {
@@ -312,16 +322,6 @@ int32_t ImmGen(Instruction s) {
         bitset <32> top20Bits = (s.instr & bitset<32>(0xFFFFF000));
         uint32_t unsignedVal = top20Bits.to_ulong();
         return static_cast<int32_t>(unsignedVal);
-
-        // Convert to signed 32-bit integer
-        // Check if the most significant bit (sign bit) is set
- /*     if (top20Bits[31]) { // If the sign bit is 1
-            return static_cast<int32_t>(unsignedVal | 0xFFFFFFFF); // Apply two's complement
-        }
-        else {
-            return static_cast<int32_t>(unsignedVal); // If sign bit is 0, it's already positive
-        }
- */
     } 
     //LOAD
     else if (((s.instr & bitset<32>(0x7F)) == bitset<32>(0b0000011))) {
@@ -488,24 +488,4 @@ int32_t ALU_Result(int x1, int x2, bitset<4> ALUOp)
     
 }
 
-int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
-{
-    if (MemWrite && word) {
-        dmemory[ALUResult / 4] = rs2;
-        return 0;
-    }
-    //IF the store is just a byte
-    else if (MemWrite && !(word) ) {
-        dmemory[ALUResult / 4] = rs2 & 0xFF;
-        return 0;
-    }
-    else if (MemRead && word) {
-        return dmemory[ALUResult / 4];
-    }
-    //IF the load is just a byte
-    else if (MemRead && !(word)) {
-        return (dmemory[ALUResult / 4] & 0xFF);
-    }
-    else
-        return -1;
-}
+

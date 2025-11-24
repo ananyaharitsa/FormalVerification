@@ -33,7 +33,6 @@ int main(int argc, char* argv[])
 	*/
 	unsigned char instMem[4096];
 
-
 	if (argc < 2) {
 		//cout << "No file name entered. Exiting...";
 		return -1;
@@ -47,21 +46,7 @@ int main(int argc, char* argv[])
 
 	string line;
 	int i = 0;
-	/*while (infile) {
-		infile >> line;
-		stringstream line2(line);
-		char x;
-		line2 >> x;
-		instMem[i] = x; // be careful about hex
-		i++;
-		line2 >> x;
-		instMem[i] = x; // be careful about hex
-		//cout << instMem[i] << endl;
-		i++;
-
-	}
-	int maxPC = i;
-	*/
+	
 	// Read each line in the input file, assuming each line represents 1 byte in hexadecimal
 	while (std::getline(infile, line) && i < 4096) {
 		std::stringstream line2(line);
@@ -92,8 +77,10 @@ int main(int argc, char* argv[])
 	bool done = true;
 	while (done == true) // processor's main loop. Each iteration is equal to one clock cycle.  
 	{
-		//fetch
-		
+		///////////////
+		//// FETCH ////
+		///////////////
+
 		//Only make an instruction if its 32 more bits
 		if (i - myCPU.readPC() < 4)
 			break;
@@ -111,7 +98,9 @@ int main(int argc, char* argv[])
 		//Getting the next PC without jumps
 		unsigned long nextPC = myCPU.readPC() + 4;
 
-		// decode
+		////////////////
+		//// DECODE	////
+		////////////////
 		Controller myController(myInst);
 		ALU_Controller myALU_Control(myInst, myController.ALUOp);
 		int32_t ImmValue = ImmGen(myInst);
@@ -121,14 +110,17 @@ int main(int argc, char* argv[])
 		int rs1 = (myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]);
 		int rs2 = (myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]);
 
+
+		////////////////
+		// EXECUTION  //
+		////////////////
+
 		//Keeping x0 at 0
 		registers[0] = 0;
 		
 		//Read Registers
 		int rs1Val = registers[rs1];
 		int rs2Val = registers[rs2];
-
-		
 
 		//KEEP THIS IN CASE OF WRITE DATAPATH
 		int prevRS2 = rs2Val;
@@ -142,12 +134,11 @@ int main(int argc, char* argv[])
 		
 		//Check on Branch Condition (Changes the next PC to jump)
 		if ((myController.Branch == zeroFlag) && (zeroFlag == 1)) {
-			nextPC = myCPU.readPC() + ImmValue; //Only multiplied by 4 to compensate                        *CHECK THIS PART*
+			nextPC = myCPU.readPC() + ImmValue; //Only multiplied by 4 to compensate
 		}
 
-
 		/////////////////
-		//MEMORY STUFF
+		//MEMORY ACCESS//
 		/////////////////
 
 		//If the LOAD/Store
@@ -179,8 +170,9 @@ int main(int argc, char* argv[])
 		// DATA MEMORY OUTPUT
 		int32_t Read_Data = myCPU.DataMemory(myController.MemWr, myController.MemRe, ALU_Res, prevRS2, isWord);
 
-
-		//WRITING BACK TO REGISTER
+		//////////////
+		//WRITE BACK//
+		//////////////
 		if (myController.regWrite) {
 			//ADD A condition to Write the next PC if its a JAL
 			if (myController.opcode == bitset<7>(0b1101111)) {
@@ -192,7 +184,7 @@ int main(int argc, char* argv[])
 		}
 
 
-		// ... 
+		//Update PC 
 		myCPU.incPC(nextPC);
 		if (myCPU.readPC() > maxPC)
 			break;
