@@ -6,6 +6,8 @@
       "type": "shell",
       "command": "g++",
       "args": [
+        "-g",             // include debug symbols
+        "-O0",            // disable optimizations for proper stepping
         "-std=c++17",
         "CPU_Files/cpusim.cpp",
         "CPU_Files/CPU.cpp",

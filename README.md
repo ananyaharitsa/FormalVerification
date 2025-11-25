@@ -20,6 +20,11 @@ Replace `your_input_file.txt` with the name of the instruction file you want to 
 
 When you run the program with this file as an argument, the CPU simulator will execute all instructions in the file and display the results in the terminal. The output includes the final contents of the registers, for example `(a0, a1)`, showing the state of the CPU at the end of execution.
 
+### Setting up MSYS2 + GDB for C++ Debugging
+
+To debug the CPU simulator in VS Code, first download MSYS2 from [https://www.msys2.org](https://www.msys2.org) and install it in `C:\msys64` (use `MSYS2` as the Start Menu folder). Open the **MSYS2 MSYS** terminal and update packages with `pacman -Syu` (run twice if prompted). Then install GCC and GDB using `pacman -S mingw-w64-x86_64-gcc` and `pacman -S mingw-w64-x86_64-gdb`. The debugger will be at `C:\msys64\mingw64\bin\gdb.exe`; this path in the VS Code `launch.json` under `"miDebuggerPath"` already.
+
+---
 
 Each class corresponds to a specific component in a basic CPU datapath.
 ---

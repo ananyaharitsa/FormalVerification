@@ -9,10 +9,10 @@
       "args": ["Test/trace/24instMem-r.txt"],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Build CPU Simulator",
-      "console": "integratedTerminal",
+      "externalConsole": false,
       "MIMode": "gdb",
-      "miDebuggerPath": "gdb",
-      "stopAtEntry": false
+      "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
+      "stopAtEntry": true
     }
   ]
 }
