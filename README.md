@@ -5,7 +5,7 @@
 This program implements a simplified **RISC-V CPU simulator** in C++.
 It models the core stages of instruction execution: **fetch, decode, execute, memory access, and write-back**.
 
-# How to Run the CPU Simulator
+# How to Run the CPU Simulator (Using an executable)
 
 1. Open the `cpusim.cpp` file in your project folder.
 2. Build the program. In VS Code, you can do this by pressing `Ctrl+Shift+B` and selecting the appropriate build task. Make sure all dependent files (`CPU.cpp`, `CPU.h`, and any other headers or source files) are in the same folder or included in your build command.
@@ -20,7 +20,11 @@ Replace `your_input_file.txt` with the name of the instruction file you want to 
 
 When you run the program with this file as an argument, the CPU simulator will execute all instructions in the file and display the results in the terminal. The output includes the final contents of the registers, for example `(a0, a1)`, showing the state of the CPU at the end of execution.
 
-### Setting up MSYS2 + GDB for C++ Debugging
+# How to Run the CPU Simulator (Using Debugging)
+
+Change the argument path in `launch.json` to your desired
+
+# Setting up MSYS2 + GDB for C++ Debugging
 
 To debug the CPU simulator in VS Code, first download MSYS2 from [https://www.msys2.org](https://www.msys2.org) and install it in `C:\msys64` (use `MSYS2` as the Start Menu folder). Open the **MSYS2 MSYS** terminal and update packages with `pacman -Syu` (run twice if prompted). Then install GCC and GDB using `pacman -S mingw-w64-x86_64-gcc` and `pacman -S mingw-w64-x86_64-gdb`. The debugger will be at `C:\msys64\mingw64\bin\gdb.exe`; this path in the VS Code `launch.json` under `"miDebuggerPath"` already.
 
