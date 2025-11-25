@@ -13,7 +13,7 @@ It models the core stages of instruction execution: **fetch, decode, execute, me
 4. Execute the program by providing your instruction file as a command-line argument. For example:
 
 ```powershell
-.\cpusim.exe CPU_Files\your_input_file.txt
+COMMAND AFTER BUILD: ./cpusim.exe .\Test\trace\`your_input_file.txt`
 ```
 
 Replace `your_input_file.txt` with the name of the instruction file you want to simulate.  
