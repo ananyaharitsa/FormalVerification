@@ -21,6 +21,27 @@
       },
       "group": {
         "kind": "build",
+        //"isDefault": true
+      },
+      "problemMatcher": ["$gcc"]
+    },
+    {
+      "label": "Build Fuzzer",
+      "type": "shell",
+      "command": "g++",
+      "args": [
+        "-g",
+        "-O0",
+        "-std=c++17",
+        "Fuzzer/fuzzer.cpp",
+        "CPU_Files/CPU.cpp",
+        "-I",
+        "CPU_Files",
+        "-o",
+        "Fuzzer/fuzzer"
+      ],
+      "group": {
+        "kind": "build",
         "isDefault": true
       },
       "problemMatcher": ["$gcc"]

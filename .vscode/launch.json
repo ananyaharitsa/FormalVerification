@@ -12,7 +12,19 @@
       "externalConsole": false,
       "MIMode": "gdb",
       "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
-      "stopAtEntry": true
+      "stopAtEntry": false
+    },
+    {
+    "name": "Run Fuzzer",
+    "type": "cppdbg",
+    "request": "launch",
+    "program": "${workspaceFolder}/Fuzzer/fuzzer",
+    "cwd": "${workspaceFolder}",
+    "externalConsole": false,
+    "preLaunchTask": "Build Fuzzer",
+    "MIMode": "gdb",
+    "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
+    "stopAtEntry": true
     }
   ]
 }
