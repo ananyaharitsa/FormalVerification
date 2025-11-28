@@ -6,7 +6,9 @@
       "type": "cppdbg",
       "request": "launch",
       "program": "${workspaceFolder}/cpusim.exe",
-      "args": ["Test/trace/24instMem-r.txt"],
+      "args": [
+        "Test/trace/24instMem-r.txt"
+      ],
       "cwd": "${workspaceFolder}",
       "preLaunchTask": "Build CPU Simulator",
       "externalConsole": false,
@@ -15,16 +17,12 @@
       "stopAtEntry": false
     },
     {
-    "name": "Run Fuzzer",
-    "type": "cppdbg",
-    "request": "launch",
-    "program": "${workspaceFolder}/Fuzzer/fuzzer",
-    "cwd": "${workspaceFolder}",
-    "externalConsole": false,
-    "preLaunchTask": "Build Fuzzer",
-    "MIMode": "gdb",
-    "miDebuggerPath": "C:/msys64/mingw64/bin/gdb.exe",
-    "stopAtEntry": true
+      "name": "C/C++ Runner: Debug Session",
+      "type": "lldb",
+      "request": "launch",
+      "args": [],
+      "cwd": "/Users/ananyaharitsa/FormalVerification",
+      "program": "/Users/ananyaharitsa/FormalVerification/build/Debug/outDebug"
     }
   ]
 }
