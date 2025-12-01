@@ -67,6 +67,10 @@ void runCPU(vector<unsigned char> &instructions) {
     }
 
     cout << "Final a0, a1: (" << registers[10] << "," << registers[11] << ")" << endl;
+    cout << "All Registers" << endl;
+    for (int i = 0; i < NUM_REGISTERS; ++i) {
+        cout <<"Register " << i <<  ": " << registers[i] << endl;
+    }
 }
 
 int main() {
