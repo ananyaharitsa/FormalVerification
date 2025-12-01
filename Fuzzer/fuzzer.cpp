@@ -79,6 +79,6 @@ int main() {
     }
 
     runCPU(instructions);
-    saveInstructions(instructions, "Test/fuzzer_inputs/random_inst.txt");
+    saveInstructions(instructions, "Test/fuzzer_trace/random_inst.txt");
     return 0;
 }
