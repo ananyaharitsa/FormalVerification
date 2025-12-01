@@ -1,0 +1,107 @@
+CPU_Files/CPU.h:1:0: information: Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <iostream>
+^
+CPU_Files/CPU.h:2:0: information: Include file: <bitset> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <bitset>
+^
+CPU_Files/CPU.h:3:0: information: Include file: <stdio.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+^
+CPU_Files/CPU.h:4:0: information: Include file: <stdlib.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include<stdlib.h>
+^
+CPU_Files/CPU.h:5:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <string>
+^
+CPU_Files/CPU.cpp:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+CPU_Files/CPU.cpp:214:20: style: inconclusive: Technically the member function 'CPU::readPC' can be const. [functionConst]
+unsigned long CPU::readPC()
+                   ^
+CPU_Files/CPU.h:16:16: note: Technically the member function 'CPU::readPC' can be const.
+ unsigned long readPC();
+               ^
+CPU_Files/CPU.cpp:214:20: note: Technically the member function 'CPU::readPC' can be const.
+unsigned long CPU::readPC()
+                   ^
+CPU_Files/CPU.h:32:2: style: Class 'Controller' has a constructor with 1 argument that is not explicit. [noExplicitConstructor]
+ Controller(Instruction instr);
+ ^
+CPU_Files/CPU.cpp:388:30: style: Operator '|' with one operand equal to zero is redundant. [badBitmaskCheck]
+           (s.instr[8] << 1) | //1
+                             ^
+CPU_Files/CPU.cpp:427:32: style: Operator '|' with one operand equal to zero is redundant. [badBitmaskCheck]
+           (s.instr[12] << 12) | // 12
+                               ^
+CPU_Files/CPU.cpp:481:10: style: inconclusive: Found duplicate branches for 'if' and 'else'. [duplicateBranch]
+    else if (ALUOp == bitset<4>(0b1111)) {
+         ^
+CPU_Files/CPU.cpp:485:5: note: Found duplicate branches for 'if' and 'else'.
+    else {
+    ^
+CPU_Files/CPU.cpp:481:10: note: Found duplicate branches for 'if' and 'else'.
+    else if (ALUOp == bitset<4>(0b1111)) {
+         ^
+CPU_Files/CPU.cpp:36:36: style: inconclusive: Function 'Controller' argument 1 names different: declaration 'instr' definition 's'. [funcArgNamesDifferent]
+Controller::Controller(Instruction s)
+                                   ^
+CPU_Files/CPU.h:32:25: note: Function 'Controller' argument 1 names different: declaration 'instr' definition 's'.
+ Controller(Instruction instr);
+                        ^
+CPU_Files/CPU.cpp:36:36: note: Function 'Controller' argument 1 names different: declaration 'instr' definition 's'.
+Controller::Controller(Instruction s)
+                                   ^
+CPU_Files/CPU.cpp:17:40: style: Parameter 'instructionMem' can be declared as const array [constParameter]
+Instruction::Instruction(unsigned char instructionMem[], CPU cpu)
+                                       ^
+CPU_Files/CPU.cpp:274:24: style: Variable 'opcode_L' is assigned a value that is never used. [unreadVariable]
+    bitset<32> opcode_L(0b0000011);
+                       ^
+CPU_Files/CPU.cpp:276:24: style: Variable 'opcode_S' is assigned a value that is never used. [unreadVariable]
+    bitset<32> opcode_S(0b0100011);
+                       ^
+CPU_Files/CPU.cpp:278:24: style: Variable 'opcode_J' is assigned a value that is never used. [unreadVariable]
+    bitset<32> opcode_J(0b1101111);
+                       ^
+CPU_Files/cpusim.cpp:3:0: information: Include file: <iostream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <iostream>
+^
+CPU_Files/cpusim.cpp:4:0: information: Include file: <bitset> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <bitset>
+^
+CPU_Files/cpusim.cpp:5:0: information: Include file: <stdio.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <stdio.h>
+^
+CPU_Files/cpusim.cpp:6:0: information: Include file: <stdlib.h> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include<stdlib.h>
+^
+CPU_Files/cpusim.cpp:7:0: information: Include file: <string> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <string>
+^
+CPU_Files/cpusim.cpp:8:0: information: Include file: <fstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include<fstream>
+^
+CPU_Files/cpusim.cpp:9:0: information: Include file: <sstream> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include <sstream>
+^
+CPU_Files/cpusim.cpp:10:0: information: Include file: <vector> not found. Please note: Cppcheck does not need standard library headers to get proper results. [missingIncludeSystem]
+#include<vector>
+^
+CPU_Files/cpusim.cpp:0:0: information: Limiting analysis of branches. Use --check-level=exhaustive to analyze all branches. [normalCheckLevelMaxBranches]
+
+^
+CPU_Files/cpusim.cpp:78:14: style: The comparison 'done == true' is always true because 'done' and 'true' represent the same value. [knownConditionTrueFalse]
+ while (done == true) // processor's main loop. Each iteration is equal to one clock cycle.
+             ^
+CPU_Files/cpusim.cpp:77:14: note: 'done' is assigned value 'true' here.
+ bool done = true;
+             ^
+CPU_Files/cpusim.cpp:78:14: note: The comparison 'done == true' is always true because 'done' and 'true' represent the same value.
+ while (done == true) // processor's main loop. Each iteration is equal to one clock cycle.
+             ^
+CPU_Files/CPU.h:6:1: error: Code 'using namespace std' is invalid C code. [syntaxError]
+using namespace std;
+^
+nofile:0:0: information: Active checkers: There was critical errors (use --checkers-report=<filename> to see details) [checkersReport]
+
