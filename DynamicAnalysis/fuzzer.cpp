@@ -171,23 +171,28 @@ int main(int argc, char* argv[]) {
             auto inst = generateRandomInstruction();
             instructions.insert(instructions.end(), inst.begin(), inst.end());
         }
+        // --- DYNAMIC FILENAME GENERATION ---
+        string outputFilename = mode + "_debug_instructions.txt";
+        cout << "Saving generated instructions to '" << outputFilename << "'..." << endl;
+        saveInstructions(instructions, outputFilename);
+        // -----------------------------------
     } else if (mode == "opcode") {
         cout << "Running Opcode-Aware Fuzzer..." << endl;
         for (int i = 0; i < 1000; ++i) {
             auto inst = generateOpcodeInstruction();
             instructions.insert(instructions.end(), inst.begin(), inst.end());
         }
+        // --- DYNAMIC FILENAME GENERATION ---
+        string outputFilename = mode + "_debug_instructions.txt";
+        cout << "Saving generated instructions to '" << outputFilename << "'..." << endl;
+        saveInstructions(instructions, outputFilename);
     } else if (mode == "file") {
         cout << "Running File-Input Fuzzer (AI Trace)..." << endl;
         if (argc < 3) { cerr << "Provide filename"; return 1; }
         instructions = loadInstructionsFromFile(argv[2]);
     }
 
-    // --- DYNAMIC FILENAME GENERATION ---
-    string outputFilename = mode + "_debug_instructions.txt";
-    cout << "Saving generated instructions to '" << outputFilename << "'..." << endl;
-    saveInstructions(instructions, outputFilename);
-    // -----------------------------------
+
 
     runCPU(instructions);
     return 0;
