@@ -184,9 +184,9 @@ int main(int argc, char* argv[]) {
     }
 
     // --- DYNAMIC FILENAME GENERATION ---
-    //string outputFilename = mode + "_debug_instructions.txt";
-    //cout << "Saving generated instructions to '" << outputFilename << "'..." << endl;
-    //saveInstructions(instructions, outputFilename);
+    string outputFilename = mode + "_debug_instructions.txt";
+    cout << "Saving generated instructions to '" << outputFilename << "'..." << endl;
+    saveInstructions(instructions, outputFilename);
     // -----------------------------------
 
     runCPU(instructions);

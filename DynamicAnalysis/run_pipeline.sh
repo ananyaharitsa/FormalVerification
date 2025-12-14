@@ -2,7 +2,7 @@
 
 # Compile Flags
 CXX=g++
-FILES="Fuzzer/fuzzer.cpp ../CPU_Files/CPU.cpp" # Adjust paths as needed
+FILES="fuzzer.cpp ../CPU_Files/CPU.cpp" # Adjust paths as needed
 FLAGS="-std=c++17 -I../CPU_Files"
 
 echo "========================================"
@@ -11,8 +11,8 @@ echo "========================================"
 
 # --- STEP 1: AI GENERATION ---
 echo "[+] Step 1: Generating AI Traces..."
-python3 Fuzzer/ai_fuzzer.py gen
-python3 Fuzzer/ai_fuzzer.py edge
+python3 ai_gemini_fuzzer.py gen
+python3 ai_gemini_fuzzer.py edge
 
 # --- STEP 2: COMPILE WITH SANITIZERS (ASan + UBSan) ---
 echo "[+] Step 2: Compiling with AddressSanitizer & UBSan..."
@@ -23,6 +23,9 @@ echo "[!] Running Random Fuzzing (Sanitized)..."
 
 echo "[!] Running Opcode Fuzzing (Sanitized)..."
 ./fuzzer_asan opcode > /dev/null
+
+echo "[!] Running AI Gen Fuzzing (Sanitized)..."
+./fuzzer_asan file ai_trace_gen.txt > /dev/null
 
 echo "[!] Running AI Edge Fuzzing (Sanitized)..."
 ./fuzzer_asan file ai_trace_edge.txt > /dev/null

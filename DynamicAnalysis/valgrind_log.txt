@@ -1,1 +1,71 @@
-valgrind: ./fuzzer_valgrind: No such file or directory
+==8924== Memcheck, a memory error detector
+==8924== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==8924== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==8924== Command: ./fuzzer_valgrind opcode
+==8924== 
+Running Opcode-Aware Fuzzer...
+Saving generated instructions to 'opcode_debug_instructions.txt'...
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x49CB802: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
+==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x49CB80B: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
+==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x49CB843: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
+==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== Use of uninitialised value of size 8
+==8924==    at 0x49CB821: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
+==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x10B611: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:128)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+[JUDGE] Execution Valid.
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x49C8AEE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
+==8924==    by 0x10C353: CPU::~CPU() (CPU.h:10)
+==8924==    by 0x10B961: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:161)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== Conditional jump or move depends on uninitialised value(s)
+==8924==    at 0x484A11A: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
+==8924==    by 0x10C353: CPU::~CPU() (CPU.h:10)
+==8924==    by 0x10B961: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:161)
+==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
+==8924==  Uninitialised value was created by a stack allocation
+==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
+==8924== 
+==8924== 
+==8924== HEAP SUMMARY:
+==8924==     in use at exit: 0 bytes in 0 blocks
+==8924==   total heap usage: 2,016 allocs, 2,016 frees, 119,123 bytes allocated
+==8924== 
+==8924== All heap blocks were freed -- no leaks are possible
+==8924== 
+==8924== For lists of detected and suppressed errors, rerun with: -s
+==8924== ERROR SUMMARY: 5002 errors from 7 contexts (suppressed: 0 from 0)
