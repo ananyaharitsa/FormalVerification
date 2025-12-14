@@ -14,6 +14,11 @@ private:
 
 public:
 	CPU();
+
+	// SAFETY FOR FUZZING
+    bool errorFlag = false;          // True if a crash occurred
+    string errorMessage = "";        // Details about the crash
+   
 	unsigned long readPC();
 	void incPC(unsigned long nextPC);
 	int32_t DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word);
