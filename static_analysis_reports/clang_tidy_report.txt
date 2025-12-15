@@ -1,0 +1,822 @@
+[1/2] Processing file /Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp.
+27609 warnings and 1 error generated.
+Error while processing /Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp.
+[2/2] Processing file /Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp.
+59607 warnings and 2 errors generated.
+Error while processing /Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp.
+   89 | #include <stdarg.h>
+      |          ^~~~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:9:7: warning: member initializer for 'dmemory' is redundant [modernize-use-default-member-init]
+    9 |     : dmemory{}, PC(0)
+      |       ^~~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:9:18: warning: member initializer for 'PC' is redundant [modernize-use-default-member-init]
+    9 |     : dmemory{}, PC(0)
+      |                  ^~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:15:32: warning: do not declare C-style arrays, use 'std::array' or 'std::vector' instead [modernize-avoid-c-arrays]
+   15 | Instruction::Instruction(const unsigned char instructionMem[], const CPU &cpu)
+      |                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:20:25: warning: integer literal has suffix 'u', which is not uppercase [readability-uppercase-literal-suffix]
+   20 |     uint32_t combined = 0u;
+      |                         ^~
+      |                          U
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:22:70: warning: 4096 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   22 |     for (unsigned long idx = currentPC; idx < currentPC + 4 && idx < 4096; ++idx) {
+      |                                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:24:33: warning: 8 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   24 |         combined = (combined << 8) | byte;
+      |                                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:34:27: warning: unused local variable 'opcode_R' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   34 |     const std::bitset<32> opcode_R(0b0110011);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:36:27: warning: unused local variable 'opcode_I' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   36 |     const std::bitset<32> opcode_I(0b0010011);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:38:27: warning: unused local variable 'opcode_U' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   38 |     const std::bitset<32> opcode_U(0b0110111);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:40:27: warning: unused local variable 'opcode_L' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   40 |     const std::bitset<32> opcode_L(0b0000011);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:42:27: warning: unused local variable 'opcode_S' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   42 |     const std::bitset<32> opcode_S(0b0100011);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:44:27: warning: unused local variable 'opcode_J' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   44 |     const std::bitset<32> opcode_J(0b1101111);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:46:27: warning: unused local variable 'opcode_B' of type 'const std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   46 |     const std::bitset<32> opcode_B(0b1100011);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:48:17: warning: 32 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   48 |     std::bitset<32> bits = instr.instr;
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:48:21: warning: unused local variable 'bits' of type 'std::bitset<32>' [bugprone-unused-local-non-trivial-variable]
+   48 |     std::bitset<32> bits = instr.instr;
+      |                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:49:17: warning: 32 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   49 |     std::bitset<32> instrLow = bits & std::bitset<32>(0x7F);
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:55:36: warning: repeated branch body in conditional chain [bugprone-branch-clone]
+   55 |     else if (instrLow == opcode_I) {
+      |                                    ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:58:6: note: end of the original
+   58 |     }
+      |      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:59:36: note: clone 1 starts here
+   59 |     else if (instrLow == opcode_U) {
+      |                                    ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:86:51: warning: parameter name 's' is too short, expected at least 3 characters [readability-identifier-length]
+   86 | ALU_Controller::ALU_Controller(const Instruction &s, std::bitset<2> ALUOp_FrmController)
+      |                                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:89:21: warning: 32 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   89 |         std::bitset<32> maskFunct3(0x7000);
+      |                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:90:59: warning: repeated branch body in conditional chain [bugprone-branch-clone]
+   90 |         if ((maskFunct3 & s.instr) == std::bitset<32>(0)) {
+      |                                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:92:10: note: end of the original
+   92 |         }
+      |          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:93:69: note: clone 1 starts here
+   93 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x4000)) {
+      |                                                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:96:69: note: clone 2 starts here
+   96 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x6000)) {
+      |                                                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:99:69: note: clone 3 starts here
+   99 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x5000)) {
+      |                                                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:93:60: warning: 0x4000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   93 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x4000)) {
+      |                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:96:60: warning: 0x6000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   96 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x6000)) {
+      |                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:99:60: warning: 0x5000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   99 |         else if ((maskFunct3 & s.instr) == std::bitset<32>(0x5000)) {
+      |                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:103:13: warning: if with identical then and else branches [bugprone-branch-clone]
+  103 |             if (((s.instr & std::bitset<32>(0x7F)) == std::bitset<32>(0b0110111))) {
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:105:15: note: else branch starts here
+  105 |             } else {
+      |               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:103:45: warning: 0x7F is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  103 |             if (((s.instr & std::bitset<32>(0x7F)) == std::bitset<32>(0b0110111))) {
+      |                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:103:71: warning: 0b0110111 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  103 |             if (((s.instr & std::bitset<32>(0x7F)) == std::bitset<32>(0b0110111))) {
+      |                                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:110:59: warning: repeated branch body in conditional chain [bugprone-branch-clone]
+  110 |     else if (ALUOp_FrmController == std::bitset<2>(0b00)) {
+      |                                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:112:6: note: end of the original
+  112 |     }
+      |      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:113:59: note: clone 1 starts here
+  113 |     else if (ALUOp_FrmController == std::bitset<2>(0b01)) {
+      |                                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:116:59: note: clone 2 starts here
+  116 |     else if (ALUOp_FrmController == std::bitset<2>(0b11)) {
+      |                                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:119:10: note: clone 3 starts here
+  119 |     else {
+      |          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:125:20: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+  125 | unsigned long CPU::readPC() const
+      | ~~~~~~~~~~~~~      ^             
+      | auto                              -> unsigned long
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:135:14: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+  135 | int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
+      | ~~~~~~~      ^                                                                       
+      | auto                                                                                  -> int32_t
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:135:25: warning: 4 adjacent parameters of 'DataMemory' of similar type ('int') are easily swapped by mistake [bugprone-easily-swappable-parameters]
+  135 | int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
+      |                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:135:29: note: the first parameter in the range is 'MemWrite'
+  135 | int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
+      |                             ^~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:135:71: note: the last parameter in the range is 'rs2'
+  135 | int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool word)
+      |                                                                       ^~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:149:9: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  149 |     if (MemWrite && word) {
+      |         ^
+      |         (        != 0)
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:153:5: warning: do not use 'else' after 'return' [readability-else-after-return]
+  153 |     else if (MemWrite && !word) {
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  154 |         dmemory[index] = rs2 & 0xFF;
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  155 |         return 0;
+      |         ~~~~~~~~~
+  156 |     }
+      |     ~
+  157 |     else if (MemRead && word) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  158 |         return dmemory[index];
+      |         ~~~~~~~~~~~~~~~~~~~~~~
+  159 |     }
+      |     ~
+  160 |     else if (MemRead && !word) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  161 |         return (dmemory[index] & 0xFF);
+      |         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  162 |     }
+      |     ~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:153:14: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  153 |     else if (MemWrite && !word) {
+      |              ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:154:32: warning: 0xFF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  154 |         dmemory[index] = rs2 & 0xFF;
+      |                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:157:14: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  157 |     else if (MemRead && word) {
+      |              ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:160:14: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  160 |     else if (MemRead && !word) {
+      |              ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:161:34: warning: 0xFF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  161 |         return (dmemory[index] & 0xFF);
+      |                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:173:10: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+  173 | uint32_t toBigEndian(uint32_t value) {
+      | ~~~~~~~~ ^
+      | auto                                 -> uint32_t
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:175:31: warning: 0x000000FF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  175 |     uint32_t byte0 = (value & 0x000000FF) << 24;
+      |                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:175:46: warning: 24 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  175 |     uint32_t byte0 = (value & 0x000000FF) << 24;
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:176:31: warning: 0x0000FF00 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  176 |     uint32_t byte1 = (value & 0x0000FF00) << 8;
+      |                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:176:46: warning: 8 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  176 |     uint32_t byte1 = (value & 0x0000FF00) << 8;
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:177:31: warning: 0x00FF0000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  177 |     uint32_t byte2 = (value & 0x00FF0000) >> 8;
+      |                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:177:46: warning: 8 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  177 |     uint32_t byte2 = (value & 0x00FF0000) >> 8;
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:178:31: warning: 0xFF000000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  178 |     uint32_t byte3 = (value & 0xFF000000) >> 24;
+      |                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:178:46: warning: 24 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  178 |     uint32_t byte3 = (value & 0xFF000000) >> 24;
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:184:9: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+  184 | int32_t ImmGen(const Instruction &s)
+      | ~~~~~~~ ^                           
+      | auto                                 -> int32_t
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:184:9: warning: function 'ImmGen' has cognitive complexity of 27 (threshold 25) [readability-function-cognitive-complexity]
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:190:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  190 |     if (opcode == 0b0110011) return 0; // R-type
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:192:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  192 |     if (opcode == 0b0010011) { // I-type
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:195:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+  195 |         if (funct3 == 0x6000) {
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:39: note: +3, including nesting penalty of 2, nesting level increased to 3
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:199:16: note: +1, nesting level increased to 2
+  199 |         } else if (funct3 == 0x5000) {
+      |                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:205:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  205 |     if (opcode == 0b0110111) { // LUI
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:210:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  210 |     if (opcode == 0b0000011) {
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:35: note: +2, including nesting penalty of 1, nesting level increased to 2
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:216:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  216 |     if (opcode == 0b0100011) { // S-type
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:35: note: +2, including nesting penalty of 1, nesting level increased to 2
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:224:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  224 |     if (opcode == 0b1100011) { // B-type
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:226:28: note: +2, including nesting penalty of 1, nesting level increased to 2
+  226 |         imm |= ((instr[31] ? 1:0) << 12);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:227:27: note: +2, including nesting penalty of 1, nesting level increased to 2
+  227 |         imm |= ((instr[7] ? 1:0) << 11);
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+  230 |         if (imm & (1 << 12)) imm |= 0xFFFFE000;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:234:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+  234 |     if (opcode == 0b1101111) { // J-type
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:236:28: note: +2, including nesting penalty of 1, nesting level increased to 2
+  236 |         imm |= ((instr[31] ? 1:0) << 20);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+  240 |         if (imm & (1 << 20)) imm |= 0xFFF00000;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:184:35: warning: parameter name 's' is too short, expected at least 3 characters [readability-identifier-length]
+  184 | int32_t ImmGen(const Instruction &s)
+      |                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:187:12: warning: 32 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  187 |     bitset<32> instr = s.instr;
+      |            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:188:43: warning: 0x7F is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  188 |     uint32_t opcode = (instr & bitset<32>(0x7F)).to_ulong();
+      |                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:190:19: warning: 0b0110011 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  190 |     if (opcode == 0b0110011) return 0; // R-type
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:190:29: warning: statement should be inside braces [readability-braces-around-statements]
+  190 |     if (opcode == 0b0110011) return 0; // R-type
+      |                             ^                   
+      |                              {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:192:19: warning: 0b0010011 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  192 |     if (opcode == 0b0010011) { // I-type
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:193:16: warning: 32 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  193 |         bitset<32> maskFunct3(0x7000);
+      |                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:195:23: warning: 0x6000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  195 |         if (funct3 == 0x6000) {
+      |                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:196:38: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  196 |             uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:196:55: warning: 0xFFFu is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  196 |             uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:196:55: warning: integer literal has suffix 'u', which is not uppercase [readability-uppercase-literal-suffix]
+  196 |             uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                                       ^    ~
+      |                                                            U
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:21: warning: variable name 'v' is too short, expected at least 3 characters [readability-identifier-length]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:25: warning: implicit conversion 'uint32_t' (aka 'unsigned int') -> 'bool' [readability-implicit-bool-conversion]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                         ^
+      |                         (             != 0u)
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:32: warning: 0x800 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:41: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:70: warning: 0xFFFFF000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:197:84: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  197 |             int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                                    ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:199:11: warning: do not use 'else' after 'return' [readability-else-after-return]
+  199 |         } else if (funct3 == 0x5000) {
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |             uint32_t imm = (instr >> 20).to_ulong() & 0x1Fu;
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |             return static_cast<int32_t>(imm);
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  202 |         }
+      |         ~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:199:30: warning: 0x5000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  199 |         } else if (funct3 == 0x5000) {
+      |                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:200:38: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  200 |             uint32_t imm = (instr >> 20).to_ulong() & 0x1Fu;
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:200:55: warning: 0x1Fu is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  200 |             uint32_t imm = (instr >> 20).to_ulong() & 0x1Fu;
+      |                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:200:55: warning: integer literal has suffix 'u', which is not uppercase [readability-uppercase-literal-suffix]
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:205:19: warning: 0b0110111 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  205 |     if (opcode == 0b0110111) { // LUI
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:206:46: warning: 0xFFFFF000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  206 |         uint32_t top20 = (instr & bitset<32>(0xFFFFF000)).to_ulong();
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:211:34: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  211 |         uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:211:51: warning: 0xFFFu is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  211 |         uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:211:51: warning: integer literal has suffix 'u', which is not uppercase [readability-uppercase-literal-suffix]
+  211 |         uint32_t imm = (instr >> 20).to_ulong() & 0xFFFu;
+      |                                                   ^    ~
+      |                                                        U
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:17: warning: variable name 'v' is too short, expected at least 3 characters [readability-identifier-length]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:21: warning: implicit conversion 'uint32_t' (aka 'unsigned int') -> 'bool' [readability-implicit-bool-conversion]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                     ^
+      |                     (             != 0u)
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:28: warning: 0x800 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:37: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:66: warning: 0xFFFFF000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:212:80: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  212 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:216:19: warning: 0b0100011 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  216 |     if (opcode == 0b0100011) { // S-type
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:217:38: warning: 25 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  217 |         uint32_t imm_hi = ((instr >> 25) & bitset<32>(0x7F)).to_ulong();
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:217:55: warning: 0x7F is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  217 |         uint32_t imm_hi = ((instr >> 25) & bitset<32>(0x7F)).to_ulong();
+      |                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:218:38: warning: 7 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  218 |         uint32_t imm_lo = ((instr >> 7) & bitset<32>(0x1F)).to_ulong();
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:218:54: warning: 0x1F is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  218 |         uint32_t imm_lo = ((instr >> 7) & bitset<32>(0x1F)).to_ulong();
+      |                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:219:35: warning: 5 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  219 |         uint32_t imm = (imm_hi << 5) | imm_lo;
+      |                                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:17: warning: variable name 'v' is too short, expected at least 3 characters [readability-identifier-length]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:21: warning: implicit conversion 'uint32_t' (aka 'unsigned int') -> 'bool' [readability-implicit-bool-conversion]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                     ^
+      |                     (             != 0u)
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:28: warning: 0x800 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:37: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:66: warning: 0xFFFFF000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:220:80: warning: narrowing conversion from 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  220 |         int32_t v = (imm & 0x800) ? (static_cast<int32_t>(imm) | 0xFFFFF000) : static_cast<int32_t>(imm);
+      |                                                                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:224:19: warning: 0b1100011 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  224 |     if (opcode == 0b1100011) { // B-type
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:226:24: warning: 31 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  226 |         imm |= ((instr[31] ? 1:0) << 12);
+      |                        ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:226:38: warning: 12 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  226 |         imm |= ((instr[31] ? 1:0) << 12);
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:227:24: warning: 7 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  227 |         imm |= ((instr[7] ? 1:0) << 11);
+      |                        ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:227:37: warning: 11 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  227 |         imm |= ((instr[7] ? 1:0) << 11);
+      |                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:228:28: warning: 25 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  228 |         imm |= (((instr >> 25) & bitset<32>(0x3F)).to_ulong() << 5);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:228:45: warning: 0x3F is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  228 |         imm |= (((instr >> 25) & bitset<32>(0x3F)).to_ulong() << 5);
+      |                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:228:66: warning: 5 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  228 |         imm |= (((instr >> 25) & bitset<32>(0x3F)).to_ulong() << 5);
+      |                                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:229:28: warning: 8 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  229 |         imm |= (((instr >> 8) & bitset<32>(0xF)).to_ulong() << 1);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:229:44: warning: 0xF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  229 |         imm |= (((instr >> 8) & bitset<32>(0xF)).to_ulong() << 1);
+      |                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:13: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  230 |         if (imm & (1 << 12)) imm |= 0xFFFFE000;
+      |             ^              
+      |             (              ) != 0
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:25: warning: 12 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  230 |         if (imm & (1 << 12)) imm |= 0xFFFFE000;
+      |                         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:29: warning: statement should be inside braces [readability-braces-around-statements]
+  230 |         if (imm & (1 << 12)) imm |= 0xFFFFE000;
+      |                             ^                  
+      |                              {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:37: warning: narrowing conversion from constant value 4294959104 (0xFFFFE000) of type 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  230 |         if (imm & (1 << 12)) imm |= 0xFFFFE000;
+      |                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:230:37: warning: 0xFFFFE000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:234:19: warning: 0b1101111 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  234 |     if (opcode == 0b1101111) { // J-type
+      |                   ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:236:24: warning: 31 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  236 |         imm |= ((instr[31] ? 1:0) << 20);
+      |                        ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:236:38: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  236 |         imm |= ((instr[31] ? 1:0) << 20);
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:237:28: warning: 21 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  237 |         imm |= (((instr >> 21) & bitset<32>(0x3FF)).to_ulong() << 1);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:237:45: warning: 0x3FF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  237 |         imm |= (((instr >> 21) & bitset<32>(0x3FF)).to_ulong() << 1);
+      |                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:238:28: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  238 |         imm |= (((instr >> 20) & bitset<32>(0x1)).to_ulong() << 11);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:238:65: warning: 11 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  238 |         imm |= (((instr >> 20) & bitset<32>(0x1)).to_ulong() << 11);
+      |                                                                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:239:28: warning: 12 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  239 |         imm |= (((instr >> 12) & bitset<32>(0xFF)).to_ulong() << 12);
+      |                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:239:45: warning: 0xFF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  239 |         imm |= (((instr >> 12) & bitset<32>(0xFF)).to_ulong() << 12);
+      |                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:239:66: warning: 12 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  239 |         imm |= (((instr >> 12) & bitset<32>(0xFF)).to_ulong() << 12);
+      |                                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:13: warning: implicit conversion 'int' -> 'bool' [readability-implicit-bool-conversion]
+  240 |         if (imm & (1 << 20)) imm |= 0xFFF00000;
+      |             ^              
+      |             (              ) != 0
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:25: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  240 |         if (imm & (1 << 20)) imm |= 0xFFF00000;
+      |                         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:29: warning: statement should be inside braces [readability-braces-around-statements]
+  240 |         if (imm & (1 << 20)) imm |= 0xFFF00000;
+      |                             ^                  
+      |                              {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:37: warning: narrowing conversion from constant value 4293918720 (0xFFF00000) of type 'unsigned int' to signed type 'int32_t' (aka 'int') is implementation-defined [bugprone-narrowing-conversions]
+  240 |         if (imm & (1 << 20)) imm |= 0xFFF00000;
+      |                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:240:37: warning: 0xFFF00000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:247:9: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+  247 | int32_t ALU_Result(int x1, int x2, std::bitset<4> ALUOp)
+      | ~~~~~~~ ^                                               
+      | auto                                                     -> int32_t
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:247:24: warning: parameter name 'x1' is too short, expected at least 3 characters [readability-identifier-length]
+  247 | int32_t ALU_Result(int x1, int x2, std::bitset<4> ALUOp)
+      |                        ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:247:32: warning: parameter name 'x2' is too short, expected at least 3 characters [readability-identifier-length]
+  247 | int32_t ALU_Result(int x1, int x2, std::bitset<4> ALUOp)
+      |                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:254:5: warning: do not use 'else' after 'return' [readability-else-after-return]
+  254 |     else if (ALUOp == std::bitset<4>(0b0110)) {
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  255 |         return x1 - x2;
+      |         ~~~~~~~~~~~~~~~
+  256 |     }
+      |     ~
+  257 |     //AND
+      |     ~~~~~
+  258 |     else if (ALUOp == std::bitset<4>(0b0000)) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  259 |         return x1 & x2;
+      |         ~~~~~~~~~~~~~~~
+  260 |     }
+      |     ~
+  261 |     //ORI
+      |     ~~~~~
+  262 |     else if (ALUOp == std::bitset<4>(0b0001)) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  263 |         return x1 | x2;
+      |         ~~~~~~~~~~~~~~~
+  264 |     }
+      |     ~
+  265 |     //XOR
+      |     ~~~~~
+  266 |     else if (ALUOp == std::bitset<4>(0b0011)) {
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  267 |         return x1 ^ x2;
+      |         ~~~~~~~~~~~~~~~
+  268 |     }
+      |     ~
+  269 |     //SRAI
+      |     ~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:254:38: warning: 0b0110 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  254 |     else if (ALUOp == std::bitset<4>(0b0110)) {
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:274:38: warning: 0b1000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  274 |     else if (ALUOp == std::bitset<4>(0b1000)) {
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/CPU.cpp:278:38: warning: 0b1111 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+  278 |     else if (ALUOp == std::bitset<4>(0b1111)) {
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:8:5: warning: use a trailing return type for this function [modernize-use-trailing-return-type]
+    8 | int main(int argc, char* argv[])
+      | ~~~ ^                           
+      | auto                             -> int
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:8:5: warning: function 'main' has cognitive complexity of 55 (threshold 25) [readability-function-cognitive-complexity]
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:12:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   12 |     if (argc < 2) {
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:18:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   18 |     if (!infile.is_open()) {
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:25:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   25 |     while (std::getline(infile, line) && i < 4096) {
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:25:39: note: +1
+   25 |     while (std::getline(infile, line) && i < 4096) {
+      |                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:39:5: note: +1, including nesting penalty of 0, nesting level increased to 1
+   39 |     while (true) {
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:41:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   41 |         if ((i - static_cast<int>(myCPU.readPC())) < 4) break;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:55:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   55 |         if (rd < 0 || rd >= NUM_REGISTERS) rd = 0;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:55:20: note: +1
+   55 |         if (rd < 0 || rd >= NUM_REGISTERS) rd = 0;
+      |                    ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:56:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   56 |         if (rs1 < 0 || rs1 >= NUM_REGISTERS) rs1 = 0;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:56:21: note: +1
+   56 |         if (rs1 < 0 || rs1 >= NUM_REGISTERS) rs1 = 0;
+      |                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:57:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   57 |         if (rs2 < 0 || rs2 >= NUM_REGISTERS) rs2 = 0;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:57:21: note: +1
+   57 |         if (rs2 < 0 || rs2 >= NUM_REGISTERS) rs2 = 0;
+      |                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:63:38: note: +2, including nesting penalty of 1, nesting level increased to 2
+   63 |         rs2Val = myController.AluSrc ? ImmValue : rs2Val;
+      |                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:68:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   68 |         if ((myController.Branch == zeroFlag) && zeroFlag) {
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:68:47: note: +1
+   68 |         if ((myController.Branch == zeroFlag) && zeroFlag) {
+      |                                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:73:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   73 |         if (myController.opcode == std::bitset<7>(0b0000011)) {
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:74:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+   74 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:75:13: note: +1, nesting level increased to 3
+   75 |             else isWord = false;
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:76:16: note: +1, nesting level increased to 2
+   76 |         } else if (myController.opcode == std::bitset<7>(0b0100011)) {
+      |                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:77:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+   77 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:78:13: note: +1, nesting level increased to 3
+   78 |             else isWord = false;
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:83:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   83 |         if (myController.regWrite) {
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:84:13: note: +3, including nesting penalty of 2, nesting level increased to 3
+   84 |             if (myController.opcode == std::bitset<7>(0b1101111)) {
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:85:17: note: +4, including nesting penalty of 3, nesting level increased to 4
+   85 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = static_cast<int>(myCPU.readPC() + 4);
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:85:29: note: +1
+   85 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = static_cast<int>(myCPU.readPC() + 4);
+      |                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:86:15: note: +1, nesting level increased to 3
+   86 |             } else {
+      |               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:87:17: note: +4, including nesting penalty of 3, nesting level increased to 4
+   87 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = myController.MemtoReg ? Read_Data : ALU_Res;
+      |                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:87:29: note: +1
+   87 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = myController.MemtoReg ? Read_Data : ALU_Res;
+      |                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:87:90: note: +5, including nesting penalty of 4, nesting level increased to 5
+   87 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = myController.MemtoReg ? Read_Data : ALU_Res;
+      |                                                                                          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:92:9: note: +2, including nesting penalty of 1, nesting level increased to 2
+   92 |         if (myCPU.readPC() > static_cast<unsigned long>(maxPC)) break;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:10:5: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+   10 |     unsigned char instMem[4096] = {0};
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:10:27: warning: 4096 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   10 |     unsigned char instMem[4096] = {0};
+      |                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:24:9: warning: variable name 'i' is too short, expected at least 3 characters [readability-identifier-length]
+   24 |     int i = 0;
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:25:46: warning: 4096 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   25 |     while (std::getline(infile, line) && i < 4096) {
+      |                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:29:60: warning: 0xFF is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   29 |         instMem[i] = static_cast<unsigned char>(hexValue & 0xFF);
+      |                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:36:5: warning: do not declare C-style arrays, use 'std::array' instead [modernize-avoid-c-arrays]
+   36 |     int registers[NUM_REGISTERS] = {0};
+      |     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:41:56: warning: statement should be inside braces [readability-braces-around-statements]
+   41 |         if ((i - static_cast<int>(myCPU.readPC())) < 4) break;
+      |                                                        ^      
+      |                                                         {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:13: warning: variable name 'rd' is too short, expected at least 3 characters [readability-identifier-length]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:49: warning: 11 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |                                                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:75: warning: 10 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |                                                                           ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:101: warning: 9 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |                                                                                                     ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:126: warning: 8 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |                                                                                                                              ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:50:151: warning: 7 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   50 |         int rd = static_cast<int>((myInst.instr[11] << 4) | (myInst.instr[10] << 3) | (myInst.instr[9] << 2) | (myInst.instr[8] << 1) | (myInst.instr[7]));
+      |                                                                                                                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:51:50: warning: 19 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   51 |         int rs1 = static_cast<int>((myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]));
+      |                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:51:76: warning: 18 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   51 |         int rs1 = static_cast<int>((myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]));
+      |                                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:51:102: warning: 17 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   51 |         int rs1 = static_cast<int>((myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]));
+      |                                                                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:51:128: warning: 16 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   51 |         int rs1 = static_cast<int>((myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]));
+      |                                                                                                                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:51:154: warning: 15 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   51 |         int rs1 = static_cast<int>((myInst.instr[19] << 4) | (myInst.instr[18] << 3) | (myInst.instr[17] << 2) | (myInst.instr[16] << 1) | (myInst.instr[15]));
+      |                                                                                                                                                          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:52:50: warning: 24 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   52 |         int rs2 = static_cast<int>((myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]));
+      |                                                  ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:52:76: warning: 23 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   52 |         int rs2 = static_cast<int>((myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]));
+      |                                                                            ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:52:102: warning: 22 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   52 |         int rs2 = static_cast<int>((myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]));
+      |                                                                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:52:128: warning: 21 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   52 |         int rs2 = static_cast<int>((myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]));
+      |                                                                                                                                ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:52:154: warning: 20 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   52 |         int rs2 = static_cast<int>((myInst.instr[24] << 4) | (myInst.instr[23] << 3) | (myInst.instr[22] << 2) | (myInst.instr[21] << 1) | (myInst.instr[20]));
+      |                                                                                                                                                          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:55:43: warning: statement should be inside braces [readability-braces-around-statements]
+   55 |         if (rd < 0 || rd >= NUM_REGISTERS) rd = 0;
+      |                                           ^       
+      |                                            {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:56:45: warning: statement should be inside braces [readability-braces-around-statements]
+   56 |         if (rs1 < 0 || rs1 >= NUM_REGISTERS) rs1 = 0;
+      |                                             ^        
+      |                                              {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:57:45: warning: statement should be inside braces [readability-braces-around-statements]
+   57 |         if (rs2 < 0 || rs2 >= NUM_REGISTERS) rs2 = 0;
+      |                                             ^        
+      |                                              {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:73:63: warning: repeated branch body in conditional chain [bugprone-branch-clone]
+   73 |         if (myController.opcode == std::bitset<7>(0b0000011)) {
+      |                                                               ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:76:10: note: end of the original
+   76 |         } else if (myController.opcode == std::bitset<7>(0b0100011)) {
+      |          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:76:70: note: clone 1 starts here
+   76 |         } else if (myController.opcode == std::bitset<7>(0b0100011)) {
+      |                                                                      ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:74:49: warning: 0x7000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   74 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:74:77: warning: 0x2000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   74 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:74:85: warning: statement should be inside braces [readability-braces-around-statements]
+   74 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                                                     ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:74:95: warning: redundant boolean literal in conditional assignment [readability-simplify-boolean-expr]
+   74 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+      |             isWord = static_cast<bool>((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000))
+   75 |             else isWord = false;
+      |             ~~~~~~~~~~~~~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:75:17: warning: statement should be inside braces [readability-braces-around-statements]
+   75 |             else isWord = false;
+      |                 ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:76:58: warning: 0b0100011 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   76 |         } else if (myController.opcode == std::bitset<7>(0b0100011)) {
+      |                                                          ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:77:49: warning: 0x7000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   77 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                 ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:77:77: warning: 0x2000 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   77 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                                             ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:77:85: warning: statement should be inside braces [readability-braces-around-statements]
+   77 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |                                                                                     ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:77:95: warning: redundant boolean literal in conditional assignment [readability-simplify-boolean-expr]
+   77 |             if ((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000)) isWord = true;
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+      |             isWord = static_cast<bool>((myInst.instr & std::bitset<32>(0x7000)) == std::bitset<32>(0x2000))
+   78 |             else isWord = false;
+      |             ~~~~~~~~~~~~~~~~~~~
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:78:17: warning: statement should be inside braces [readability-braces-around-statements]
+   78 |             else isWord = false;
+      |                 ^
+note: this fix will not be applied because it overlaps with another fix
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:81:46: warning: implicit conversion 'bool' -> 'int' [readability-implicit-bool-conversion]
+   81 |         int32_t Read_Data = myCPU.DataMemory(myController.MemWr, myController.MemRe, ALU_Res, prevRS2, isWord);
+      |                                              ^                 
+      |                                              static_cast<int>( )
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:81:66: warning: implicit conversion 'bool' -> 'int' [readability-implicit-bool-conversion]
+   81 |         int32_t Read_Data = myCPU.DataMemory(myController.MemWr, myController.MemRe, ALU_Res, prevRS2, isWord);
+      |                                                                  ^                 
+      |                                                                  static_cast<int>( )
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:84:55: warning: 0b1101111 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   84 |             if (myController.opcode == std::bitset<7>(0b1101111)) {
+      |                                                       ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:85:51: warning: statement should be inside braces [readability-braces-around-statements]
+   85 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = static_cast<int>(myCPU.readPC() + 4);
+      |                                                   ^                                                     
+      |                                                    {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:87:51: warning: statement should be inside braces [readability-braces-around-statements]
+   87 |                 if (rd >= 0 && rd < NUM_REGISTERS) registers[rd] = myController.MemtoReg ? Read_Data : ALU_Res;
+      |                                                   ^                                                            
+      |                                                    {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:92:64: warning: statement should be inside braces [readability-braces-around-statements]
+   92 |         if (myCPU.readPC() > static_cast<unsigned long>(maxPC)) break;
+      |                                                                ^      
+      |                                                                 {
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:95:9: warning: variable name 'a0' is too short, expected at least 3 characters [readability-identifier-length]
+   95 |     int a0 = registers[10];
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:95:24: warning: 10 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   95 |     int a0 = registers[10];
+      |                        ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:96:9: warning: variable name 'a1' is too short, expected at least 3 characters [readability-identifier-length]
+   96 |     int a1 = registers[11];
+      |         ^
+/Users/vatsalamjha/Documents/Formal Verification Project/FormalVerification/static_analysis/cpusim.cpp:96:24: warning: 11 is a magic number; consider replacing it with a named constant [readability-magic-numbers]
+   96 |     int a1 = registers[11];
+      |                        ^
+Suppressed 59427 warnings (59427 in non-user code).
+Use -header-filter=.* to display errors from all non-system headers. Use -system-headers to display errors from system headers as well.
+Found compiler error(s).
