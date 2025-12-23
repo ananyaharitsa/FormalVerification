@@ -14,7 +14,7 @@ genai.configure(api_key=api_key)
 # Initialize the model 
 # 'gemini-1.5-flash' is fast and good for code generation. 
 # Use 'gemini-1.5-pro' if you find Flash isn't following the complex logic well.
-model = genai.GenerativeModel('gemini-2.5-flash')
+model = genai.GenerativeModel('gemini-flash-latest')
 
 # --- STRICTER PROMPTS ---
 PROMPT_GEN = (

@@ -228,6 +228,7 @@ int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool 
     int index = ALUResult / 4;
     
     // Check if index is outside the valid range [0, 4095]
+    #ifndef VALGRIND_MODE
     if (MemWrite || MemRead) { // Only check if we are actually accessing memory
         if (index < 0 || index >= 4096) {
             this->errorFlag = true;
@@ -235,6 +236,7 @@ int32_t CPU::DataMemory(int MemWrite, int MemRead, int ALUResult, int rs2, bool 
             return 0; // Return dummy value to keep program alive long enough to log
         }
     }
+    #endif
     // --------------------------------
     
     if (MemWrite && word) {

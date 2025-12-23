@@ -1,71 +1,103 @@
-==8924== Memcheck, a memory error detector
-==8924== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
-==8924== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
-==8924== Command: ./fuzzer_valgrind opcode
-==8924== 
+==729== Memcheck, a memory error detector
+==729== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==729== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==729== Command: ./fuzzer_valgrind file Test/crash_trace.txt
+==729== 
+Running File-Input Fuzzer (AI Trace)...
+==729== Invalid read of size 4
+==729==    at 0x110850: CPU::DataMemory(int, int, int, int, bool) (CPU.cpp:252)
+==729==    by 0x10B601: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:125)
+==729==    by 0x10BED4: main (fuzzer.cpp:197)
+==729==  Address 0x1ffeff7210 is on thread 1's stack
+==729==  1376 bytes below stack pointer
+==729== 
+[JUDGE] Execution Valid.
+==729== 
+==729== HEAP SUMMARY:
+==729==     in use at exit: 0 bytes in 0 blocks
+==729==   total heap usage: 13 allocs, 13 frees, 83,180 bytes allocated
+==729== 
+==729== All heap blocks were freed -- no leaks are possible
+==729== 
+==729== For lists of detected and suppressed errors, rerun with: -s
+==729== ERROR SUMMARY: 1 errors from 1 contexts (suppressed: 0 from 0)
+==730== Memcheck, a memory error detector
+==730== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==730== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==730== Command: ./fuzzer_valgrind random
+==730== 
+Running Random Fuzzer...
+Saving generated instructions to 'random_debug_instructions.txt'...
+[JUDGE] Execution Valid.
+==730== 
+==730== HEAP SUMMARY:
+==730==     in use at exit: 0 bytes in 0 blocks
+==730==   total heap usage: 1,016 allocs, 1,016 frees, 95,123 bytes allocated
+==730== 
+==730== All heap blocks were freed -- no leaks are possible
+==730== 
+==730== For lists of detected and suppressed errors, rerun with: -s
+==730== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==731== Memcheck, a memory error detector
+==731== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==731== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==731== Command: ./fuzzer_valgrind opcode
+==731== 
 Running Opcode-Aware Fuzzer...
 Saving generated instructions to 'opcode_debug_instructions.txt'...
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x49CB802: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
-==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
-==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x49CB80B: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
-==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
-==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x49CB843: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
-==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
-==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== Use of uninitialised value of size 8
-==8924==    at 0x49CB821: void std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::_M_construct<char*>(char*, char*, std::forward_iterator_tag) (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
-==8924==    by 0x10C3D1: CPU::CPU(CPU const&) (CPU.h:10)
-==8924==    by 0x10B066: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:102)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x10B611: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:128)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
 [JUDGE] Execution Valid.
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x49C8AEE: std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >::~basic_string() (in /usr/lib/x86_64-linux-gnu/libstdc++.so.6.0.33)
-==8924==    by 0x10C353: CPU::~CPU() (CPU.h:10)
-==8924==    by 0x10B961: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:161)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== Conditional jump or move depends on uninitialised value(s)
-==8924==    at 0x484A11A: operator delete(void*) (in /usr/libexec/valgrind/vgpreload_memcheck-amd64-linux.so)
-==8924==    by 0x10C353: CPU::~CPU() (CPU.h:10)
-==8924==    by 0x10B961: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:161)
-==8924==    by 0x10BE3A: main (fuzzer.cpp:192)
-==8924==  Uninitialised value was created by a stack allocation
-==8924==    at 0x10AFCE: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:89)
-==8924== 
-==8924== 
-==8924== HEAP SUMMARY:
-==8924==     in use at exit: 0 bytes in 0 blocks
-==8924==   total heap usage: 2,016 allocs, 2,016 frees, 119,123 bytes allocated
-==8924== 
-==8924== All heap blocks were freed -- no leaks are possible
-==8924== 
-==8924== For lists of detected and suppressed errors, rerun with: -s
-==8924== ERROR SUMMARY: 5002 errors from 7 contexts (suppressed: 0 from 0)
+==731== 
+==731== HEAP SUMMARY:
+==731==     in use at exit: 0 bytes in 0 blocks
+==731==   total heap usage: 2,016 allocs, 2,016 frees, 119,123 bytes allocated
+==731== 
+==731== All heap blocks were freed -- no leaks are possible
+==731== 
+==731== For lists of detected and suppressed errors, rerun with: -s
+==731== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==732== Memcheck, a memory error detector
+==732== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==732== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==732== Command: ./fuzzer_valgrind file ai_trace_gen.txt
+==732== 
+Running File-Input Fuzzer (AI Trace)...
+==732== Invalid read of size 4
+==732==    at 0x110850: CPU::DataMemory(int, int, int, int, bool) (CPU.cpp:252)
+==732==    by 0x10B601: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:125)
+==732==    by 0x10BED4: main (fuzzer.cpp:197)
+==732==  Address 0x1ffeff7210 is on thread 1's stack
+==732==  1376 bytes below stack pointer
+==732== 
+==732== Invalid write of size 4
+==732==    at 0x1107E8: CPU::DataMemory(int, int, int, int, bool) (CPU.cpp:243)
+==732==    by 0x10B601: runCPU(std::vector<unsigned char, std::allocator<unsigned char> >&) (fuzzer.cpp:125)
+==732==    by 0x10BED4: main (fuzzer.cpp:197)
+==732==  Address 0x1ffeff71f0 is on thread 1's stack
+==732==  1408 bytes below stack pointer
+==732== 
+[JUDGE] Execution Valid.
+==732== 
+==732== HEAP SUMMARY:
+==732==     in use at exit: 0 bytes in 0 blocks
+==732==   total heap usage: 14 allocs, 14 frees, 83,432 bytes allocated
+==732== 
+==732== All heap blocks were freed -- no leaks are possible
+==732== 
+==732== For lists of detected and suppressed errors, rerun with: -s
+==732== ERROR SUMMARY: 4 errors from 2 contexts (suppressed: 0 from 0)
+==733== Memcheck, a memory error detector
+==733== Copyright (C) 2002-2022, and GNU GPL'd, by Julian Seward et al.
+==733== Using Valgrind-3.22.0 and LibVEX; rerun with -h for copyright info
+==733== Command: ./fuzzer_valgrind file ai_trace_edge.txt
+==733== 
+Running File-Input Fuzzer (AI Trace)...
+[JUDGE] Execution Valid.
+==733== 
+==733== HEAP SUMMARY:
+==733==     in use at exit: 0 bytes in 0 blocks
+==733==   total heap usage: 10 allocs, 10 frees, 82,953 bytes allocated
+==733== 
+==733== All heap blocks were freed -- no leaks are possible
+==733== 
+==733== For lists of detected and suppressed errors, rerun with: -s
+==733== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)

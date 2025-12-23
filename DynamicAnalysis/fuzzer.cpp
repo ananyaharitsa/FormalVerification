@@ -167,7 +167,7 @@ int main(int argc, char* argv[]) {
 
     if (mode == "random") {
         cout << "Running Random Fuzzer..." << endl;
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 1000000; ++i) {
             auto inst = generateRandomInstruction();
             instructions.insert(instructions.end(), inst.begin(), inst.end());
         }
@@ -178,7 +178,7 @@ int main(int argc, char* argv[]) {
         // -----------------------------------
     } else if (mode == "opcode") {
         cout << "Running Opcode-Aware Fuzzer..." << endl;
-        for (int i = 0; i < 1000; ++i) {
+        for (int i = 0; i < 100000; ++i) {
             auto inst = generateOpcodeInstruction();
             instructions.insert(instructions.end(), inst.begin(), inst.end());
         }
