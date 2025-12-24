@@ -28,11 +28,244 @@ Change the argument path in `launch.json` to your desired
 
 To debug the CPU simulator in VS Code, first download MSYS2 from [https://www.msys2.org](https://www.msys2.org) and install it in `C:\msys64` (use `MSYS2` as the Start Menu folder). Open the **MSYS2 MSYS** terminal and update packages with `pacman -Syu` (run twice if prompted). Then install GCC and GDB using `pacman -S mingw-w64-x86_64-gcc` and `pacman -S mingw-w64-x86_64-gdb`. The debugger will be at `C:\msys64\mingw64\bin\gdb.exe`; this path in the VS Code `launch.json` under `"miDebuggerPath"` already.
 
+
+# Single-Cycle RISC-V CPU Simulator & Verification Framework
+
+This repository contains a **Single-Cycle RISC-V CPU Simulator** written in **C++**, along with a comprehensive suite of **verification and analysis tools**, including:
+
+* **Static Analysis** (Cppcheck, Clang-Tidy)
+* **Dynamic Fuzzing** (Random, Opcode-Aware, GenAI)
+* **Explicit State Model Checking** (BFS-based)
+* **Symbolic Execution / Bounded Model Checking** (CBMC)
+
+The goal of this project is not only functional correctness, but *high assurance* through multiple complementary verification techniques.
+
 ---
 
+## 📂 Project Structure
+
+```
+.
+├── CPU_Files/                 # Core RISC-V simulator implementation
+│   ├── cpusim.cpp
+│   ├── CPU.cpp
+│   └── CPU.h
+│
+├── DynamicAnalysis/           # Dynamic fuzzing pipeline
+│   ├── fuzzer.cpp
+│   ├── ai_gemini_fuzzer.py
+│   ├── run_pipeline.sh
+│   └── ...
+│
+├── ExplicitModelChecking/     # BFS-based explicit state model checker
+│   ├── ModelChecker.cpp
+│   └── CPU.cpp
+│
+├── CBMC/                      # CBMC symbolic execution harnesses
+│   └── CPU_Files/
+│       ├── cpu_cbmc_harness.cpp
+│       └── CPU.cpp
+│
+├── NondeterministicCBMC/      # Nondeterministic CBMC experiments
+│
+├── static_analysis_reports/   # Cppcheck and Clang-Tidy output logs
+│
+├── Test/                      # Instruction traces and hex dumps
+│   └── trace/
+│       └── 24swr.txt
+│
+└── README.md
+```
+
+---
+
+## 🛠️ Prerequisites
+
+To run **all components** of this project, you will need:
+
+* **C++ Compiler**: `g++` (C++17 support required)
+* **Python 3**: For GenAI fuzzing scripts
+* **Valgrind**: Memory leak detection (Linux / WSL)
+* **CBMC**: C Bounded Model Checker (formal verification)
+* **Sanitizers**: GCC AddressSanitizer (ASan) and UndefinedBehaviorSanitizer (UBSan)
+
+> **Windows users**: Use **WSL** or **MSYS2** to access `g++`, `valgrind`, and `cbmc`.
+
+---
+
+## 1. 🖥️ Running the CPU Simulator (Standard Execution)
+
+The core simulator reads a file of hexadecimal RISC-V machine code and executes it instruction by instruction.
+
+### 🔨 Build
+
+From the repository root:
+
+```bash
+g++ -std=c++17 -o cpusim.exe CPU_Files/cpusim.cpp CPU_Files/CPU.cpp -I CPU_Files
+```
+
+### ▶️ Run
+
+Provide a trace file containing hexadecimal instructions:
+
+```bash
+./cpusim.exe Test/trace/24swr.txt
+```
+
+Replace `Test/trace/24swr.txt` with any valid instruction trace.
+
+---
+
+## 2. 💥 Running Dynamic Analysis (Fuzzing Pipeline)
+
+This project includes an **automated fuzzing pipeline** that performs:
+
+1. Random Fuzzing
+2. Opcode-Aware Fuzzing
+3. GenAI-Based Fuzzing
+
+All fuzzers are executed under **ASan/UBSan** and followed by **Valgrind** analysis.
+
+### Option A: Automated Pipeline (Recommended)
+
+This script:
+
+* Generates AI-based instruction traces
+* Compiles fuzzers with sanitizers
+* Runs all fuzzing stages
+* Executes Valgrind for leak detection
+
+```bash
+cd DynamicAnalysis
+chmod +x run_pipeline.sh
+./run_pipeline.sh
+```
+
+---
+
+### Option B: Manual Execution
+
+#### 1️⃣ Generate GenAI Traces (API key/environment setup required)
+
+```bash
+python3 ai_gemini_fuzzer.py gen
+python3 ai_gemini_fuzzer.py edge
+```
+
+#### 2️⃣ Compile with Address & Undefined Behavior Sanitizers
+
+```bash
+g++ -std=c++17 -fsanitize=address,undefined -g \
+    -o fuzzer_asan fuzzer.cpp CPU_Files/CPU.cpp -I CPU_Files
+```
+
+#### 3️⃣ Run Individual Fuzzer Modes
+
+```bash
+./fuzzer_asan random                    # Stage 1: Random fuzzing
+./fuzzer_asan opcode                    # Stage 2: Opcode-aware fuzzing
+./fuzzer_asan file ai_trace_gen.txt     # Stage 3: GenAI fuzzing
+```
+
+---
+
+## 3. 📐 Running Formal Verification
+
+### A. Explicit State Model Checker (BFS)
+
+This tool performs a **Breadth-First Search** over the CPU state space to detect:
+
+* Infinite loops
+* Illegal or unsafe states
+
+#### Build
+
+```bash
+cd ExplicitModelChecking
+g++ -std=c++17 -o modelchecker ModelChecker.cpp CPU.cpp -I .
+```
+
+#### Run
+
+```bash
+./modelchecker program.txt
+```
+
+---
+
+### B. Symbolic Execution with CBMC
+
+CBMC is used to *mathematically prove* properties such as:
+
+* No buffer overflows
+* No signed integer overflows
+* Assertion correctness
+
+#### Run CBMC
+
+```bash
+cd CBMC/CPU_Files
+
+# --unwind 10: Unroll loops 10 times
+# --trace: Display counterexamples if a property fails
+cbmc cpu_cbmc_harness.cpp CPU.cpp --unwind 10 --trace
+```
+
+---
+
+## 4. 🔍 Static Analysis
+
+Static analysis is performed using:
+
+* **Cppcheck**
+* **Clang-Tidy**
+
+Generated reports are stored in:
+
+```
+static_analysis_reports/
+```
+
+### Run Cppcheck Manually
+
+```bash
+cppcheck --enable=all --inconclusive --std=c++17 CPU_Files/
+```
+
+---
+
+## 📝 Debugging & Development Notes
+
+* **VS Code**:
+
+  * A `.vscode/tasks.json` file is included.
+  * Use: `Terminal → Run Task → Build CPU Simulator` to compile directly inside VS Code.
+
+* **Windows**:
+
+  * Use **WSL** or **MSYS2** for best compatibility.
+  * If debugging with GDB, ensure `miDebuggerPath` is correctly set in `launch.json`.
+
+---
+
+## ✅ Summary
+
+This repository demonstrates a **defense-in-depth verification strategy** for a RISC-V CPU implementation by combining:
+
+* Conventional execution testing
+* Memory-safe fuzzing
+* Explicit state exploration
+* Formal symbolic reasoning
+
+Together, these techniques significantly increase confidence in correctness, safety, and robustness.
+
+
+
+# BACKGROUND
+---
 Each class corresponds to a specific component in a basic CPU datapath.
 ---
-
 ##  1. `CPU` Class
 
 ### Purpose:
