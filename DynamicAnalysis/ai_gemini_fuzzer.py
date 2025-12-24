@@ -12,8 +12,6 @@ api_key = os.getenv("GOOGLE_API_KEY")
 genai.configure(api_key=api_key)
 
 # Initialize the model 
-# 'gemini-1.5-flash' is fast and good for code generation. 
-# Use 'gemini-1.5-pro' if you find Flash isn't following the complex logic well.
 model = genai.GenerativeModel('gemini-flash-latest')
 
 # --- STRICTER PROMPTS ---
@@ -45,8 +43,6 @@ async def get_ai_instructions(prompt, filename):
         print(f"Error calling Gemini API: {e}")
         return
 
-    # --- BELOW IS YOUR ORIGINAL PARSING LOGIC (UNCHANGED) ---
-    # It is excellent for stripping out the markdown/chatty bits that LLMs often add.
 
     # 1. Smart Parsing (The Filter)
     # First, look for code blocks if they exist (between ```)
